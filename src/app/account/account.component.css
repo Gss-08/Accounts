@@ -1,0 +1,17 @@
+.container{
+  display: flex;
+}
+  .viewport {
+    height: 200px;
+    width: 100%;
+    background: #C4BBB8;
+    margin: 2em 8em 8em;
+    box-shadow: 1px 1px 1px grey;
+  }
+  mat-card {
+    height: 50px;
+    margin: 2em;
+    background-color: #1B264F;
+    color: white;
+  }
+  

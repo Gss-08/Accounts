@@ -1,0 +1,91 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav ml-auto">
+        <a class="nav-item nav-link active" routerLink = "homepage">Home <span class="sr-only"></span></a>
+        <a class="nav-item nav-link" href="#">About Us</a>
+        <a class="nav-item nav-link" href="#">Contact Us</a>
+        <a class="btn btn-secondary" routerLink = "login" >Logout</a>
+      </div>
+    </div>
+  </nav>
+<div>
+<h1>Welcome {{userId}} !!</h1>
+</div>
+<div class = "row">
+    <div class="col-4">
+    <label for="accountType">Choose type of Account : </label>
+    <select  [(ngModel)] = "accSelected" (ngModelChange)='onAccountSelected($event)'>
+        <option *ngFor="let acc of accounts">{{acc}}</option>
+        
+    </select>
+</div>
+    <div class="col-4">
+    Account Type : {{accSelected}}
+</div>
+</div>
+<div class = "row">
+<div class="col-4">
+    <cdk-virtual-scroll-viewport itemSize="100" class="viewport">
+        <h3>Account Names</h3>
+        <mat-card *cdkVirtualFor = "let ac of accountnames" (click)="onSelect(ac)">
+            
+            <mat-card-content>{{ac}}</mat-card-content>
+        </mat-card>
+        
+
+    </cdk-virtual-scroll-viewport>
+</div>
+<div class="col-8">
+    <table *ngIf="details" class="table">
+        <thead>
+            <tr>
+                <th>Account number</th>
+                <th>Balance</th>
+                <th>Acc Nick Name</th>
+                <th>Account Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor = "let d of details">
+                <td>{{d.accounNo}}</td>
+                <td>{{d.accountbal}}</td>
+                <td>{{d.accountNickName}}</td>
+                <td>d.accountType}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <br><br>
+    <button class = "btn btn-primary" *ngFor = "let d of details" (click) = "onClick(d.accountno)">Credit Card</button>
+    <table *ngIf="creditdetails" class="table">
+        <thead>
+            <tr>
+                <th>Card Number</th><th>Credit Balance</th><th>Available Balance</th><th>Payement Date</th><th>Min. Payment</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor = "let cd of creditdetails">
+                <td>{{cd.creditcardnumber}}</td><td>{{cd.creditbalance}}</td><td>{{cd.availablebalance}}</td>
+                <td>{{cd.paymentduedate}}</td><td>{{cd.minimumpayment}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <br><br>
+    
+</div>
+<button class = "btn btn-primary" *ngFor = "let d of details" (click) = "handleClick(d.accountno)">Transactions</button>
+    <table *ngIf="transactiondetails" class="table">
+        <thead>
+            <tr>
+                <th>Transaction ID</th><th>Amount</th><th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor = "let td of transactiondetails">
+                <td>{{td.transactionId}}</td><td>{{td.amount}}</td><td>{{td.date}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
